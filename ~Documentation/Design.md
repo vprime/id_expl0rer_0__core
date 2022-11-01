@@ -82,7 +82,7 @@ App Development:
 
 #### Device features:
 - 10 key input + control keys
-- 320 x 240 display
+- 320 x 240 display (2.3 x 1.8inch) 133dpi
 - Wifi A/B/G
 - Ring scanner (Separate detachable component that goes on finger)
 - Audio
@@ -90,3 +90,25 @@ App Development:
 - Flash Storage (Check that it persists after a dead battery)
 - ActiveSync
 
+## Graphics
+
+#### Ideas
+- Go all in on the Windows CE 5.0 asthetic
+- Go for a more retro monochrome or ascii art astetic
+- 8bit sprites
+- Monochrome sprites
+
+
+## Programming
+
+Options:
+- C
+- C++
+- C#
+
+## Player Input
+
+Character movement;
+- Up 5, Left 7, Down 8, Right 9
+- P1, P2, Enter for primary actions
+- Other keys for shortcuts or changing tools or opening settings or something.
