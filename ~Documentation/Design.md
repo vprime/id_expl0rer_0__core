@@ -6,7 +6,7 @@ The focus is to create a game for the Motorola Symbol/Zebra WT4090 Wearable Comp
 Why? because we can, it's a neat little device and it's a shame that the primary use is boring old warehouse work. I think it deserves some fun too.
 The game may be ported, but the primary platform is WT4090.
 
-== Design constraints: ==
+#### Design constraints:
 - Focus on the hardware features
 - No sensor data (Physical activity recording is out without external hardware)
 - No or unimportant multiplayer functionality
@@ -22,7 +22,7 @@ id_expl0rer is a digital pet game for the WT4090 wearable computer.
 
 The game is played on a device on a screen that can collect wireless and barcode data.
 
-== Gameplay Ideas ==
+#### Gameplay Ideas:
 - Scan barcodes to generate pets
 - Scan Wifi signals to generate explorable land
 - Scan bluetooth signals to find items or opponents
@@ -35,7 +35,7 @@ The game is played on a device on a screen that can collect wireless and barcode
   - Grow into an adult
 - Care
   - Pet needs to be fed
-  	- Special food can be aquired from collected data
+    - Special food can be aquired from collected data
   - Pet will make messes which need to be cleaned
   - Pet will require discipline 
     - Demanding food when not hungry
@@ -58,7 +58,8 @@ The game is played on a device on a screen that can collect wireless and barcode
 
 This wrist computer is the primary platform for the game, the design and programming will be focused on building to this device. 
 
-== Development Device Specs: ==
+#### Development Device Specs:
+
 Model: WT4090-N2H1GER
 OS: Windows CE 5.0 Pro
 CPU: 520 MHz Intel XScale PXA270
@@ -73,13 +74,13 @@ App Development:
 - EMDK for .NET https://www.zebra.com/us/en/support-downloads/software/developer-tools/emdk-for-net.html
 - EMDK for C https://www.zebra.com/us/en/support-downloads/software/developer-tools/emdk-for-c.html
 
-== Device limitations consideration: ==
+#### Device limitations consideration:
 - No sensors, including IMU/Movement
 - No touch screen
 - No joysticks
 - Up & Down are primary keys, Left & Right require the blue key to be pressed.
 
-== Device features ==
+#### Device features:
 - 10 key input + control keys
 - 320 x 240 display
 - Wifi A/B/G
