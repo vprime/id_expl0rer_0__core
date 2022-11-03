@@ -54,6 +54,10 @@ The game is played on a device on a screen that can collect wireless and barcode
 
 ## Target Device Considerations 
 
+- WT4090
+- Linux (For rapid development)
+- Nintendo DS (stretch goal)
+
 ### Motorola Symbol WT4090
 
 This wrist computer is the primary platform for the game, the design and programming will be focused on building to this device. 
@@ -75,12 +79,14 @@ App Development:
 - EMDK for C https://www.zebra.com/us/en/support-downloads/software/developer-tools/emdk-for-c.html
 
 #### Device limitations consideration:
+
 - No sensors, including IMU/Movement
 - No touch screen
 - No joysticks
 - Up & Down are primary keys, Left & Right require the blue key to be pressed.
 
 #### Device features:
+
 - 10 key input + control keys
 - 320 x 240 display (2.3 x 1.8inch) 133dpi
 - Wifi A/B/G
@@ -92,19 +98,11 @@ App Development:
 
 ## Graphics
 
-#### Ideas
-- Go all in on the Windows CE 5.0 asthetic
-- Go for a more retro monochrome or ascii art astetic
-- 8bit sprites
-- Monochrome sprites
+Take inspiration from Pokemon Emerald for the color pallette, scaling, overworld, and UI elements.
 
+If we have closeup of the pets, we may want to generate 2 different scales for them. One larger and one smaller for the overworld.
+(Might not get that advanced tho)
 
-## Programming
-
-Options:
-- C
-- C++
-- C#
 
 ## Player Input
 
@@ -112,3 +110,37 @@ Character movement;
 - Up 5, Left 7, Down 8, Right 9
 - P1, P2, Enter for primary actions
 - Other keys for shortcuts or changing tools or opening settings or something.
+
+
+
+## Programming
+
+The intent will be to write the software in a portable way, so it can be re-used on other devices. Symbol EMDK is available in both C & C# so target device features are natively available in three formats C, C#, and C++. I will choose C++ because it's Object Oriented and I won't need mono to develop for Linux.
+
+### Conventions
+- C++98
+- Generic Interfaces for graphic drawing, scanning, and other device specific features.
+- Limited or no frameworks, standard libray only. Except in platform specific parts.
+
+### Development path
+- Create basic refrence project that draws a bitmap graphic to a window on the WT4090.
+  - Use GWES.exe
+- Create basic refrence project that draws a bitmap graphic to a windo in Modern Linux.
+- Create basic refrence project that builds to Linux and WT4090 and shares some code.
+- Testing system
+- Sprite map loading
+- Rendering from sprite map to scene
+- Text rendering
+- Dialog boxes
+- Input
+- Menus
+- Animation
+- Character movement
+- Collision
+- Generate environment from random seed
+- Generate creature sprites from a random seed
+- Time system
+- Saving
+- Dialog trees
+- Virtural pet game logic
+- Target device extensions for generating random seeds
