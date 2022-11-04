@@ -55,8 +55,8 @@ The game is played on a device on a screen that can collect wireless and barcode
 ## Target Device Considerations 
 
 - WT4090
-- Linux (For rapid development)
-- Nintendo DS (stretch goal)
+- Linux (For rapid development & Raspberry Pi)
+- (Tenative) Nintendo 3DS (https://github.com/devkitPro/citro3d)
 
 ### Motorola Symbol WT4090
 
@@ -117,15 +117,19 @@ Character movement;
 
 The intent will be to write the software in a portable way, so it can be re-used on other devices. Symbol EMDK is available in both C & C# so target device features are natively available in three formats C, C#, and C++. I will choose C++ because it's Object Oriented and I won't need mono to develop for Linux.
 
+
 ### Conventions
+
 - C++98
 - Generic Interfaces for graphic drawing, scanning, and other device specific features.
 - Limited or no frameworks, standard libray only. Except in platform specific parts.
 
+
 ### Development path
 - Create basic refrence project that draws a bitmap graphic to a window on the WT4090.
-  - Use GWES.exe
+  - Use GWES/(GDI in CE 5)
 - Create basic refrence project that draws a bitmap graphic to a windo in Modern Linux.
+  - Probably OpenGL ES 1.1 (Cross compatability with Desktop, Pi, Mobile devices)
 - Create basic refrence project that builds to Linux and WT4090 and shares some code.
 - Testing system
 - Sprite map loading
