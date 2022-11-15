@@ -49,10 +49,10 @@ endif()
 
 if (${GLUT_FOUND})
     add_dependencies(sharedBuildSample-linux OpenGL::OpenGL)
-    target_include_directories(sharedBuildSample-linux ${GLUT_INCLUDE_DIRS} )
+    target_include_directories(sharedBuildSample-linux PUBLIC ${GLUT_INCLUDE_DIRS} )
 endif()
 if (${GLU_FOUND})
-    target_include_directories(sharedBuildSample-linux ${GLU_INCLUDE_DIRS})
+    target_include_directories(sharedBuildSample-linux PUBLIC ${GLU_INCLUDE_DIRS})
 endif()
 
 if (${OpenGL_FOUND} AND ${GLUT_FOUND})
