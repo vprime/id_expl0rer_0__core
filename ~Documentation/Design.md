@@ -129,7 +129,7 @@ The intent will be to write the software in a portable way, so it can be re-used
 - Create basic refrence project that draws a bitmap graphic to a window on the WT4090.
   - Use GWES/(GDI in CE 5)
 - Create basic refrence project that draws a bitmap graphic to a windo in Modern Linux.
-  - Probably OpenGL ES 1.1 (Cross compatability with Desktop, Pi, Mobile devices)
+  - Probably OpenGL/Mesa sample
 - Create basic refrence project that builds to Linux and WT4090 and shares some code.
 - Testing system
 - Sprite map loading
