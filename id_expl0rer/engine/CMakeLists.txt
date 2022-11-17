@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(id_expl0rer_engine)
+project(engine)
 
 set(CMAKE_CXX_STANDARD 98)
 
@@ -21,4 +21,5 @@ target_link_libraries(${PROJECT_NAME}
 
         )
 
-add_subdirectory(players/desktop players/wristterm)
+add_subdirectory(players/desktop)
+add_subdirectory(players/wristterm)

@@ -49,7 +49,6 @@
 #endif /* ! GLUT_WRAP_H */
 //#include "glut_wrap.h"
 
-#include "id_expl0rer_engine/engine.h"
 
 #define OPENGL_WIDTH 24
 #define OPENGL_HEIGHT 13

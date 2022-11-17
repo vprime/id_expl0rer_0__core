@@ -1,0 +1,3 @@
+[submodule "id_expl0rer/engine/players/desktop/external/freeglut"]
+	path = id_expl0rer/engine/players/desktop/external/freeglut
+	url = https://github.com/FreeGLUTProject/freeglut.git

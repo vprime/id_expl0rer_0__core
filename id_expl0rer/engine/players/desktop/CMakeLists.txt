@@ -1,33 +1,43 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.10)
 
-project(id_expl0rer)
+project(desktop_player)
 
 set(CMAKE_CXX_STANDARD 98)
 
-include_directories(src)
 
-add_executable(id_expl0rer-linux src/main.cpp)
+add_executable(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/src/main.cpp)
+target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
 find_package(OpenGL COMPONENTS OpenGL)
 find_package(GLUT)
-find_package(GLU)
 
-if (${OpenGL_FOUND})
+if (${OPENGL_GLU_FOUND})
+    message("OpenGL:GLU found")
+    message(${OPENGL_glu_LIBRARY})
 endif()
+if (${OPENGL_FOUND})
+    message("OpenGL found")
+    message(${OPENGL_gl_LIBRARY})
+endif()
+if (${OpenGL_OpenGL_FOUND})
+    message("OpenGL:OpenGL found")
+endif()
+
+target_link_libraries(${PROJECT_NAME} ${OPENGL_glu_LIBRARY} ${OPENGL_gl_LIBRARY})
 
 if (${GLUT_FOUND})
-    add_dependencies(id_expl0rer-linux OpenGL::OpenGL)
-    target_include_directories(id_expl0rer-linux PUBLIC ${GLUT_INCLUDE_DIRS} )
+    target_include_directories(${PROJECT_NAME} PRIVATE ${GLUT_INCLUDE_DIRS})
+    target_link_libraries(${PROJECT_NAME} ${GLUT_LIBRARY})
+else()
+    add_subdirectory(external/freeglut)
+    target_include_directories(${PROJECT_NAME} PRIVATE external/freeglut/include)
+    target_link_libraries(${PROJECT_NAME} freeglut)
 endif()
 if (${GLU_FOUND})
-    target_include_directories(id_expl0rer-linux PUBLIC ${GLU_INCLUDE_DIRS})
-endif()
-
-if (${OpenGL_FOUND} AND ${GLUT_FOUND})
-    target_link_libraries(id_expl0rer-linux OpenGL::OpenGL ${GLUT_LIBRARY} ${GLU_LIBRARY})
+    target_include_directories(${PROJECT_NAME} PRIVATE ${GLU_INCLUDE_DIRS})
+    target_link_libraries(${PROJECT_NAME} ${GLU_LIBRARY})
 endif()
 
 
-target_link_libraries(id_expl0rer-linux id_expl0rer_engine)
-target_link_libraries(id_expl0rer-wince id_expl0rer_engine)
-include_directories(id_expl0rer_engine)
+include_directories(engine app)
+target_link_libraries(${PROJECT_NAME} app)
