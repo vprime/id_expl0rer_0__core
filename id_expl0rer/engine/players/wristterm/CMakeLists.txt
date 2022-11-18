@@ -12,7 +12,7 @@ add_executable(${PROJECT_NAME} WIN32
         src/resourceppc.h
         src/stdafx.cpp
         src/stdafx.h
-        src/gwes-sample2ppc.rc)
+        src/gwes-sample2ppc.rc ../../include/engine/player.h ../../../app/src/app.cpp ../../include/engine/app.h)
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC "$ENV{VS90}/VC/ce/include"

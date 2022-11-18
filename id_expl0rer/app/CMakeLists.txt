@@ -5,8 +5,6 @@ project(app)
 set(CMAKE_CXX_STANDARD 98)
 
 include_directories(src)
-include_directories()
 
-
-add_library(${PROJECT_NAME} src/main.cpp)
+add_library(${PROJECT_NAME} src/app.cpp ../engine/include/engine/app.h)
 target_link_libraries(${PROJECT_NAME} engine)

@@ -4,7 +4,7 @@ project(engine)
 
 set(CMAKE_CXX_STANDARD 98)
 
-add_library(${PROJECT_NAME} src/engine.cpp)
+add_library(${PROJECT_NAME} src/engine.cpp include/engine/player.h ../app/src/app.cpp include/engine/app.h src/mainloop.cpp)
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC
