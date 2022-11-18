@@ -6,4 +6,3 @@ set(CMAKE_CXX_STANDARD 98)
 
 add_subdirectory(app)
 add_subdirectory(engine)
-

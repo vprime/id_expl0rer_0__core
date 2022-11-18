@@ -126,25 +126,50 @@ The intent will be to write the software in a portable way, so it can be re-used
 
 
 ### Development path
-- Create basic refrence project that draws a bitmap graphic to a window on the WT4090.
+- [x] Create basic refrence project that draws a bitmap graphic to a window on the WT4090.
   - Use GWES/(GDI in CE 5)
-- Create basic refrence project that draws a bitmap graphic to a windo in Modern Linux.
+- [x] Create basic refrence project that draws a bitmap graphic to Modern Linux.
   - Probably OpenGL/Mesa sample
-- Create basic refrence project that builds to Linux and WT4090 and shares some code.
-- Testing system
-- Sprite map loading
-- Rendering from sprite map to scene
-- Text rendering
-- Dialog boxes
-- Input
-- Menus
-- Animation
-- Character movement
-- Collision
-- Generate environment from random seed
-- Generate creature sprites from a random seed
-- Time system
-- Saving
-- Dialog trees
-- Virtural pet game logic
-- Target device extensions for generating random seeds
+- [x] Create basic refrence project that builds to Linux and WT4090 and shares some code.
+- [x] Testing system
+  - Cmake + Boost Test
+- [ ] Sprite map loading
+- [ ] Rendering from sprite map to scene
+- [ ] Text rendering
+- [ ] Dialog boxes
+- [ ] Input
+- [ ] Menus
+- [ ] Animation
+- [ ] Character movement
+- [ ] Collision
+- [ ] Generate environment from random seed
+- [ ] Generate creature sprites from a random seed
+- [ ] Time system
+- [ ] Saving
+- [ ] Dialog trees
+- [ ] pet game logic
+- [ ] Target device extensions for generating random seeds
+
+### Structure
+
+- App
+  - id_expl0rer Game logic
+  - Resources for the game
+- Engine
+  - generic components
+    - rendering
+      - Pixel
+        - point of color
+      - Sprite
+        - Grouping of pixels with a width and height
+      - Layer
+        - Grouping of sprites in a 2D plane
+      - Scene
+        - grouping of ordered layers
+      - Camera
+        - width, height, and position of the viewport of a scene
+  - players
+    - wristterm
+      - build for wt4000 wrist terminals
+    - desktop
+      - build for Linux/Windows desktops

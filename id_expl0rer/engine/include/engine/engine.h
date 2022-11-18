@@ -1,6 +1,6 @@
 #pragma once
 
-class id_expl0rerEngine {
+class engine {
     public:
         static void PrintHelloWorld();
 };

@@ -9,9 +9,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
 find_package(OpenGL COMPONENTS OpenGL)
 find_package(GLUT)
-
-target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
-target_link_libraries(${PROJECT_NAME} ${OPENGL_glu_LIBRARY} ${OPENGL_gl_LIBRARY})
+target_include_directories(${PROJECT_NAME} PUBLIC ${OPENGL_INCLUDE_DIR})
+target_link_libraries(${PROJECT_NAME} OpenGL::GL OpenGL::GLU)
 
 if (${GLUT_FOUND})
     target_include_directories(${PROJECT_NAME} PRIVATE ${GLUT_INCLUDE_DIRS})
