@@ -28,10 +28,39 @@
 
 #include <SFML/Graphics.hpp>
 #include <engine/graphics.h>
+#include <GL/gl.h>
 
-
-void Graphics::Renderer::Draw(IDrawable *drawable)
+namespace DesktopPlayer
 {
-    auto texturePtr = drawable->Draw(ViewportWidth, ViewportHeight);
+    class Renderer : public Graphics::Renderer
+    {
+    public:
+        void Draw(const Graphics::Texture* texture);
+        sf::RenderWindow window;
+
+    };
+
+    class RenderTexture : public sf::Drawable
+    {
+    public:
+        RenderTexture(const Graphics::Texture* texture);
+
+    private:
+        virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const
+        {
+            glBegin(GL_QUADS);
+
+
+            glEnd();
+        }
+    };
+}
+
+
+
+void DesktopPlayer::Renderer::Draw(const Graphics::Texture* texture)
+{
+    auto renderTexture = RenderTexture(texture);
+    window.draw(renderTexture)
 
 }

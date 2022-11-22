@@ -29,14 +29,16 @@ namespace Graphics
     class IDrawable
     {
     public:
-        const Texture* Draw(unsigned int width, unsigned int height);
+        const Texture* DrawTexture(const Engine::Camera* camera);
     };
 
     class Renderer
     {
     public:
-        void Draw(IDrawable *drawable);
+        void Draw(const Texture* texture);
         void Clear();
+        Math::Vector2short GetViewport();
+    private:
         int ViewportWidth;
         int ViewportHeight;
     };

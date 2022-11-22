@@ -17,7 +17,7 @@ add_executable(${PROJECT_NAME} WIN32 ${PROJECT_SOURCE_DIR}/src/main.cpp
         ../../include/engine/player.h
         src/renderer.cpp
         ../../../app/src/app.cpp
-        ../../include/engine/app.h)
+        ../../include/engine/app.h include/desktop_renderer.h)
 target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
 include_directories(engine app ${SFML_INCLUDE_DIR})

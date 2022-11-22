@@ -21,26 +21,25 @@ namespace Engine
     class SceneComponent
     {
     public:
+        Engine::Transform transform;
     };
 
     class Layer
     {
     public:
         SceneComponent * components;
-
     };
 
     class Scene
     {
     public:
         Layer * layers;
-
     };
 
-    class Camera
+    class Camera : SceneComponent
     {
     public:
-        Engine::Transform transform;
+        Layer * layers;
     };
 }
 
