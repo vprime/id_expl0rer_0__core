@@ -10,7 +10,7 @@ namespace app{
     class app{
         public:
             app();
-            engine::mainLoop* mainLoop;
+            Engine::MainLoop* mainLoop;
 
     };
 }

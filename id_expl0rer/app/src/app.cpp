@@ -7,5 +7,5 @@
 
 app::app::app()
 {
-    mainLoop = new engine::mainLoop;
+    mainLoop = new Engine::MainLoop;
 }

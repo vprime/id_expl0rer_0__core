@@ -6,11 +6,6 @@
 #define ID_EXPL0RER_DEVELOPMENT_PLAYER_H
 
 namespace player {
-    class renderer{
-    public:
-        int DisplayWidth;
-        int DisplayHeight;
-    };
 
 }
 

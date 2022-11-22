@@ -2,15 +2,17 @@
 
 #include <engine/engine.h>
 #include <stdint.h>
+#include <iostream>
 
 typedef int64_t msec_t;
 #if defined(__WIN32__)
 
-#include <windows.h>
+#include <sysinfoapi.h>
 
 msec_t time_ms(void)
 {
-    return timeGetTime();
+
+    return GetTickCount();
 }
 
 #else
@@ -27,21 +29,23 @@ msec_t time_ms(void)
 #endif
 
 
-engine::mainLoop::mainLoop()
+Engine::MainLoop::MainLoop()
 {
     milliseconds = 0;
     running = false;
     frame = 0;
     deltatime = 0;
-    start = time_ms();
+    m_Start = time_ms();
 }
 
-void engine::mainLoop::update()
+
+bool Engine::MainLoop::Update()
 {
     long long now = time_ms();
-    long long  newMilliseconds = now - start;
+    long long  newMilliseconds = now - m_Start;
     deltatime = newMilliseconds - milliseconds;
     milliseconds = newMilliseconds;
-
+    std::cout << "Time: " << milliseconds << "Frame: " << frame << std::endl;
     frame++;
+    return (milliseconds > 3000 || frame > 3000);
 }
