@@ -151,7 +151,17 @@ The intent will be to write the software in a portable way, so it can be re-used
 - [ ] Target device extensions for generating random seeds
 
 ### Structure
-
+    // Batch the graphics, and do it in just a few draw calls.
+    // Render at a lower resolution, and upscale to display
+    // Texture atlas
+    // Animation
+    // UI Layout system
+    // Edge anchoring, padding, text rendering, word wrapping
+    // rectangle packing for text renderer
+    // PostFX (Bloom)
+    // Particles
+    // Bluring
+    // Color grading
 - App
   - id_expl0rer Game logic
   - Resources for the game
