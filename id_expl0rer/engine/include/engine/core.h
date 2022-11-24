@@ -1,7 +1,3 @@
-//
-// Created by nohbu on 11/21/2022.
-//
-
 #ifndef ID_EXPL0RER_DEVELOPMENT_CORE_H
 #define ID_EXPL0RER_DEVELOPMENT_CORE_H
 
@@ -13,9 +9,10 @@ namespace Engine
     class Transform
     {
     public:
-        Math::Vector3 position;
-        Math::Vector3 rotation;
-        Math::Vector3 scale;
+        Math::Vector2Int position;
+        Math::Vector2Int rotation;
+        Math::Vector2Int scale;
+        Math::BoundsInt bounds;
     };
 
     class SceneComponent
@@ -30,16 +27,17 @@ namespace Engine
         SceneComponent * components;
     };
 
-    class Scene
+    class Camera : SceneComponent
     {
     public:
         Layer * layers;
     };
 
-    class Camera : SceneComponent
+    class Scene
     {
     public:
         Layer * layers;
+        Camera * cameras;
     };
 }
 

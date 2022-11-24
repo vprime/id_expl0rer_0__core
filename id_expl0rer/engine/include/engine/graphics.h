@@ -1,7 +1,3 @@
-//
-// Created by nohbu on 11/21/2022.
-//
-
 #ifndef ID_EXPL0RER_DEVELOPMENT_GRAPHICS_H
 #define ID_EXPL0RER_DEVELOPMENT_GRAPHICS_H
 #include "math.h"
@@ -29,7 +25,7 @@ namespace Graphics
     class IDrawable
     {
     public:
-        const Texture* DrawTexture(const Engine::Camera* camera);
+        virtual const Texture* DrawTexture(const Math::BoundsInt* viewport);
     };
 
     class Renderer
@@ -37,7 +33,7 @@ namespace Graphics
     public:
         void Draw(const Texture* texture);
         void Clear();
-        Math::Vector2short GetViewport();
+        Math::Vector2Short GetViewport();
     private:
         int ViewportWidth;
         int ViewportHeight;

@@ -11,6 +11,7 @@ The game may be ported, but the primary platform is WT4090.
 - No sensor data (Physical activity recording is out without external hardware)
 - No or unimportant multiplayer functionality
 - Plays over a long period of time with minor input required from user
+- 2D & Interger positioning
 
 
 ## Summary
@@ -103,6 +104,19 @@ Take inspiration from Pokemon Emerald for the color pallette, scaling, overworld
 If we have closeup of the pets, we may want to generate 2 different scales for them. One larger and one smaller for the overworld.
 (Might not get that advanced tho)
 
+### Graphics Programming
+- Batch the graphics, and do it in just a few draw calls.
+- Render at a lower resolution, and upscale to display
+- Texture atlas
+- Animation
+- UI Layout system
+- Edge anchoring, padding, text rendering, word wrapping
+- rectangle packing for text renderer
+- PostFX (Bloom)
+- Particles
+- Bluring (Maybe? Probably not, this is in the future)
+- Color grading (This would be awesome, probab)
+
 
 ## Player Input
 
@@ -128,11 +142,11 @@ The intent will be to write the software in a portable way, so it can be re-used
 ### Development path
 - [x] Create basic refrence project that draws a bitmap graphic to a window on the WT4090.
   - Use GWES/(GDI in CE 5)
-- [x] Create basic refrence project that draws a bitmap graphic to Modern Linux.
-  - Probably OpenGL/Mesa sample
+- [x] Create basic refrence project that draws a bitmap graphic to Modern Linux & Windows systems.
+  - Probably OpenGL/Mesa sample (Switching to SFML for more control than GLUT)
 - [x] Create basic refrence project that builds to Linux and WT4090 and shares some code.
 - [x] Testing system
-  - Cmake + Boost Test
+  - Cmake + Boost Test (Not actually implemented yet, lol)
 - [ ] Sprite map loading
 - [ ] Rendering from sprite map to scene
 - [ ] Text rendering
@@ -151,17 +165,7 @@ The intent will be to write the software in a portable way, so it can be re-used
 - [ ] Target device extensions for generating random seeds
 
 ### Structure
-    // Batch the graphics, and do it in just a few draw calls.
-    // Render at a lower resolution, and upscale to display
-    // Texture atlas
-    // Animation
-    // UI Layout system
-    // Edge anchoring, padding, text rendering, word wrapping
-    // rectangle packing for text renderer
-    // PostFX (Bloom)
-    // Particles
-    // Bluring
-    // Color grading
+
 - App
   - id_expl0rer Game logic
   - Resources for the game
