@@ -12,7 +12,7 @@ add_executable(${PROJECT_NAME} WIN32
         src/resourceppc.h
         src/stdafx.cpp
         src/stdafx.h
-        src/gwes-sample2ppc.rc ../../include/engine/player.h ../../../app/src/app.cpp ../../include/engine/app.h)
+        src/gwes-sample2ppc.rc ../../include/engine/player.h ../../../app/src/app.cpp ../../include/engine/app.h include/wristterm_renderer.h include/wristterm_player.h src/main.cpp src/renderer.cpp)
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC "$ENV{VS90}/VC/ce/include"

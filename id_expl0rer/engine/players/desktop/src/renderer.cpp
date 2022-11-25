@@ -50,7 +50,6 @@ namespace DesktopPlayer
         {
             glBegin(GL_QUADS);
 
-
             glEnd();
         }
     };
