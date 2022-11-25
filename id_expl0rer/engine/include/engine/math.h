@@ -23,6 +23,7 @@ namespace Math
     struct Vector2Int
     {
     public:
+        Vector2Int():X(0), Y(0);
         Vector2Int(int x, int y);
         int X;
         int Y;
@@ -41,14 +42,21 @@ namespace Math
     {
     public:
         BoundsInt(Vector2Int center, Vector2Int size);
-        Vector2Int center;
-        Vector2Int extents;
-        Vector2Int max;
-        Vector2Int min;
-        Vector2Int size;
+        bool Contains(Vector2Int * point);
+        bool Intersects(Math::BoundsInt * bounds);
+        static Math::BoundsInt Intersection(Math::BoundsInt * a, Math::BoundsInt * b);
+        void Update(Vector2Int center, Vector2Int size);
+        Vector2Int GetMin() {return m_Min;};
+        Vector2Int GetMax() {return m_Max;};
+        Vector2Int GetSize() {return m_Size;};
 
-        bool Contains(Vector2Int point);
-        bool Intersects(BoundsInt bounds);
+    private:
+        Vector2Int m_Center;
+        Vector2Int m_Size;
+        Vector2Int m_Extents;
+        Vector2Int m_Max;
+        Vector2Int m_Min;
+
 
     };
 

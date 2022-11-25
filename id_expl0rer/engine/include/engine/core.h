@@ -18,26 +18,20 @@ namespace Engine
     class SceneComponent
     {
     public:
+        virtual ~SceneComponent() = 0;
         Engine::Transform transform;
     };
 
     class Layer
     {
     public:
-        SceneComponent * components;
-    };
-
-    class Camera : SceneComponent
-    {
-    public:
-        Layer * layers;
+        std::vector<SceneComponent *> components;
     };
 
     class Scene
     {
     public:
-        Layer * layers;
-        Camera * cameras;
+        std::vector<Layer> layers;
     };
 }
 

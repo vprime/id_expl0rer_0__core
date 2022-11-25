@@ -9,7 +9,7 @@ add_library(${PROJECT_NAME}
         include/engine/player.h
         ../app/src/app.cpp include/engine/app.h
         src/mainloop.cpp
-        include/engine/core.h include/engine/graphics.h include/engine/math.h)
+        include/engine/core.h include/engine/graphics.h include/engine/math.h src/core.cpp src/graphics.cpp src/math.cpp)
 
 target_include_directories(${PROJECT_NAME}
         PUBLIC
