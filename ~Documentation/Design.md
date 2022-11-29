@@ -3,13 +3,13 @@
 ## Focus
 
 The focus is to create a game for the Motorola Symbol/Zebra WT4090 Wearable Computer.
-Why? because we can, it's a neat little device and it's a shame that the primary use is boring old warehouse work. I think it deserves some fun too.
+Why? because we can, it's a neat little device, and it's a shame that the primary use is boring old warehouse work. I think it deserves some fun too.
 The game may be ported, but the primary platform is WT4090.
 
 #### Design constraints:
 - Focus on the hardware features
 - No sensor data (Physical activity recording is out without external hardware)
-- No or unimportant multiplayer functionality
+- No Multiplayer
 - Plays over a long period of time with minor input required from user
 - 2D & Interger positioning
 
@@ -25,7 +25,7 @@ The game is played on a device on a screen that can collect wireless and barcode
 
 #### Gameplay Ideas:
 - Scan barcodes to generate pets
-- Scan Wifi signals to generate explorable land
+- Scan Wi-fi signals to generate explorable land
 - Scan bluetooth signals to find items or opponents
 - Persistent autosave. Allow user to close the game immediately without data loss.
 - Lifecycles
@@ -99,7 +99,7 @@ App Development:
 
 ## Graphics
 
-Take inspiration from Pokemon Emerald for the color pallette, scaling, overworld, and UI elements.
+Take inspiration from Pokémon Emerald for the color palette, scaling, overworld, and UI elements.
 
 If we have closeup of the pets, we may want to generate 2 different scales for them. One larger and one smaller for the overworld.
 (Might not get that advanced tho)
