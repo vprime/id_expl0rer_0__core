@@ -17,8 +17,9 @@ add_executable(${PROJECT_NAME} WIN32 ${PROJECT_SOURCE_DIR}/src/main.cpp
         ../../include/engine/player.h
         src/renderer.cpp
         ../../../app/src/app.cpp
-        ../../include/engine/app.h include/desktop_renderer.h)
-target_include_directories(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src)
+        ../../include/engine/app.h
+        include/player/desktop_renderer.h)
+target_include_directories(${PROJECT_NAME} PUBLIC include PRIVATE ${PROJECT_SOURCE_DIR}/src)
 
 include_directories(engine app ${SFML_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} app sfml-graphics)
