@@ -38,12 +38,9 @@ namespace Graphics
     class Renderer
     {
     public:
-        void Draw(const Texture* texture);
-        void Clear();
-        Math::Vector2Short GetViewport();
-    private:
-        int ViewportWidth;
-        int ViewportHeight;
+        virtual void Draw(const Texture* texture) = 0;
+        virtual void Clear() = 0;
+        virtual Math::Vector2Short GetViewport() = 0;
     };
 
 
