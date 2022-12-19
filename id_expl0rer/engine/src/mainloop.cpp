@@ -28,7 +28,7 @@ msec_t time_ms(void)
 #endif
 
 
-Engine::MainLoop::MainLoop()
+Engine::Loop::Loop()
 {
     milliseconds = 0;
     running = false;
@@ -38,7 +38,7 @@ Engine::MainLoop::MainLoop()
 }
 
 
-bool Engine::MainLoop::Update()
+bool Engine::Loop::Update()
 {
     long long now = time_ms();
     long long  newMilliseconds = now - m_Start;
@@ -46,5 +46,19 @@ bool Engine::MainLoop::Update()
     milliseconds = newMilliseconds;
     std::cout << "Time: " << milliseconds << "Frame: " << frame << std::endl;
     frame++;
+
+    Initialize();
+    this->OnUpdate.Trigger();
+    this->OnRender.Trigger();
+    this->OnEndUpdate.Trigger();
+
     return (milliseconds > 3000 || frame > 3000);
+}
+
+void Engine::Loop::Initialize()
+{
+    if (this->m_Initialized)
+        return;
+    this->OnInitialize.Trigger();
+    this->m_Initialized = true;
 }
