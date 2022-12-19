@@ -1,6 +1,8 @@
 #import <vector>
 #include <typeinfo>
+#include <string>
 #import "engine/graphics.h"
+
 
 Graphics::Color::Color()
 {
@@ -28,10 +30,12 @@ Graphics::Color Graphics::Color::Blend(Graphics::Color *a, Graphics::Color *b)
     return Graphics::Color(red, green, blue, alpha);
 }
 
-Graphics::Texture::Texture(short width, short height)
+Graphics::Texture::Texture(short width, short height, Palette palette, PaletteMap paletteMap)
 {
     this->width = width;
     this->height = height;
+    this->palette = palette;
+    this->paletteMap = paletteMap;
 }
 
 
@@ -41,6 +45,8 @@ void Graphics::Camera::Render()
     {
         renderTexture = &m_RenderTexture;
     }
+    // Get the palette and palette map
+
     // Initialize the render texture.
     auto cameraSize = transform.bounds.GetSize();
     if ((short)cameraSize.X != m_RenderTexture.width
@@ -48,7 +54,8 @@ void Graphics::Camera::Render()
     {
         m_RenderTexture = *new Texture(
                 (short)cameraSize.X,
-                (short)cameraSize.Y);
+                (short)cameraSize.Y,
+                m_Palette, m_PaletteMap);
     }
 
     // Get all the drawables from the layers within the bounds
@@ -89,13 +96,11 @@ void Graphics::Camera::Render()
         {
             // Get drawableTexture pixel index from cursor position.
             int dtIndex = cursor.X - drawnBoundsMin.X + ((cursor.Y - drawnBoundsMin.Y) * drawnBoundsSize.X);
-            // Get pixel from index in drawnTexture;
-            Graphics::Color pixel = drawnTexture->pixels[dtIndex];
             // Get renderTexture pixel index from cursor position
             int rtIndex = cursor.X - viewportMin.X + ((cursor.Y - viewportMin.Y) * viewportSize.X);
-            auto currentPixel = m_RenderTexture.pixels[rtIndex];
+            auto currentPixel = m_RenderTexture.GetColorAtIndex(rtIndex);
             // Blend pixel into renderTexture
-            m_RenderTexture.pixels[rtIndex] = Color::Blend(&currentPixel, &pixel);
+            m_RenderTexture.pixels[rtIndex] = drawnTexture->GetPaletteColorAtIndex(dtIndex);
             // Move cursor into next position, or end drawing.
             int nextX = cursor.X + 1;
             int nextY = cursor.Y;
@@ -113,5 +118,99 @@ void Graphics::Camera::Render()
             cursor.Y = nextY;
         }
     }
+
+}
+
+Graphics::Palette::Palette() : colors()
+{
+    for (unsigned char i = 0; i <= 0xff; i++)
+    {
+        this->colors[i] = *new Color();
+    }
+}
+
+Graphics::Palette::Palette(Graphics::Color *colors) : colors()
+{
+    for (unsigned char i = 0; i <= 0xff; i++)
+    {
+        this->colors[i] = colors[i];
+    }
+}
+
+
+Graphics::PaletteMap::PaletteMap() : map()
+{
+    for (unsigned char i = 0; i <= 0xff; i++)
+    {
+        this->map[i] = i;
+    }
+}
+
+Graphics::PaletteMap::PaletteMap(const unsigned char *map) : map()
+{
+    for (unsigned char i = 0; i <= 0xff; i++)
+    {
+        this->map[i] = map[i];
+    }
+}
+
+const Graphics::Color Graphics::PaletteMap::Get(Graphics::Palette palette, unsigned char index) const {
+    return palette.colors[map[index]];
+}
+
+//Graphics::Texture::Texture(short width, short height, Graphics::Palette palette, Graphics::PaletteMap paletteMap)
+//{
+//    this->width = width;
+//    this->height = height;
+//    this->palette = palette;
+//    this->paletteMap = paletteMap;
+//}
+
+const Graphics::Color Graphics::Texture::GetColorAtIndex(unsigned int index) const
+{
+    return this->paletteMap.Get(palette, index);
+}
+
+const Graphics::Color Graphics::Texture::GetColorAtPoint(short x, short y)
+{
+    return this->GetColorAtIndex(Graphics::Texture::GetIndex(x, y, this->width));
+}
+
+const unsigned Graphics::Texture::GetIndex(short x, short y, short width)
+{
+    return (y * width) + x;
+}
+
+Graphics::Texture::Texture() : width(), height()
+{
+
+}
+
+const unsigned char Graphics::Texture::GetPaletteColorAtIndex(unsigned int index) const
+{
+    return paletteMap.map[index];
+}
+
+#include <iostream>
+#include <fstream>
+Graphics::Bitmap::Bitmap(const char *filepath)
+{
+    std::streampos size;
+    char * memblock;
+
+    std::ifstream file ( filepath, std::ios::in | std::ios::binary | std::ios::ate);
+    if (file.is_open())
+    {
+        size = file.tellg();
+        memblock = new char [size];
+        file.seekg (0, std::ios::beg);
+        file.read (memblock, size);
+        file.close();
+
+        std::cout << "the entire file content is in memory";
+
+        delete[] memblock;
+    }
+    else std::cout << "Unable to open file";
 
 }

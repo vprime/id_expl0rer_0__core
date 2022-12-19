@@ -10,6 +10,7 @@ int main(int argc, char **argv)
 {
 
     std::cout << "Starting app ";
+
     bool appRunning = true;
 
     while (appRunning)

@@ -17,13 +17,38 @@ namespace Graphics
         unsigned char alpha;
     };
 
+    struct Palette
+    {
+    public:
+        Palette();
+        explicit Palette(Color colors[256]);
+        Color colors[256];
+    };
+
+    struct PaletteMap
+    {
+    public:
+        PaletteMap();
+        explicit PaletteMap(const unsigned char map[256]);
+        unsigned char map[256];
+        const Color Get(Palette palette, unsigned char index) const;
+
+    };
+
     class Texture
     {
     public:
-        Texture(short width, short height);
+        Texture(short width, short height, Palette palette, PaletteMap paletteMap);
+        Texture();
         short width;
         short height;
-        std::vector<Color> pixels;
+        Palette palette;
+        PaletteMap paletteMap;
+        std::vector<unsigned char> pixels;
+        const Color GetColorAtIndex(unsigned int index) const;
+        const unsigned char GetPaletteColorAtIndex(unsigned int index) const;
+        const Color GetColorAtPoint(short x, short y);
+        const static unsigned int GetIndex(short x, short y, short width);
     };
 
 #include "core.h"
@@ -58,7 +83,16 @@ namespace Graphics
         void Render();
     private:
         Texture m_RenderTexture;
+        Palette m_Palette;
+        PaletteMap m_PaletteMap;
         std::vector<Engine::Layer *> m_Layers;
+    };
+
+    class Bitmap : public Texture
+    {
+    public:
+        Bitmap(const char *filepath);
+
     };
 
 }
