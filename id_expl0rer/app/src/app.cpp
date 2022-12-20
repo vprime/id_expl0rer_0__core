@@ -8,12 +8,16 @@
 
 Graphics::Texture texture;
 
-void InitalizeApp()
+class InitializeApp : public Engine::IEventObserver
 {
-    // Create texture from bitmap file
-    texture = Graphics::Bitmap("app/data/tilesets/outside-ground-small-pallette.bmp");
+public:
+    virtual void Notify()
+    {
+        // Create texture from bitmap file
+        texture = Graphics::Bitmap("app/data/tilesets/outside-ground-small-pallette.bmp");
 
-}
+    }
+} initializer;
 
 void UpdateLoop()
 {
@@ -24,6 +28,6 @@ void UpdateLoop()
 app::app::app()
 {
     mainLoop = new Engine::Loop;
-    mainLoop->OnInitialize.AddListener(&InitalizeApp);
+    mainLoop->OnInitialize.AddObserver(&initializer);
 
 }

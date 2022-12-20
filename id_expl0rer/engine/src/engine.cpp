@@ -1,21 +1,27 @@
 #include <engine/engine.h>
 
 
-void Engine::Event::AddListener(void (*listener)())
+void Engine::IEvent::AddObserver(IEventObserver* eventObserver)
 {
-    this->m_Actions.push_back((long long)&listener);
+    this->m_Actions.push_back(eventObserver);
 }
 
-void Engine::Event::Trigger()
+void Engine::IEvent::Trigger()
 {
-    for(int i = 0; i < this->m_Actions.size(); i++)
+    std::list<IEventObserver*>::iterator iterator = this->m_Actions.begin();
+    while (iterator != this->m_Actions.end())
     {
-        void (*function)() = (void(*)())this->m_Actions[i];
-        function();
+        (*iterator)->Notify();
+        ++iterator;
     }
 }
 
-Engine::Event::Event()
+Engine::IEvent::IEvent()
 {
     m_Actions.clear();
+}
+
+void Engine::IEvent::RemoveObserver(Engine::IEventObserver *eventObserver)
+{
+    this->m_Actions.remove(eventObserver);
 }

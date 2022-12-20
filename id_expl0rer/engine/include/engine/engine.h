@@ -1,18 +1,25 @@
 #pragma once
 #include <time.h>
 #include <functional>
-#include <vector>
+#include <list>
 
 namespace Engine
 {
-    class Event
+    class IEventObserver
     {
     public:
-        Event();
-        void AddListener( void (*listener)() );
+        virtual void Notify() = 0;
+    };
+
+    class IEvent
+    {
+    public:
+        IEvent();
+        virtual void AddObserver( IEventObserver* eventObserver );
+        virtual void RemoveObserver( IEventObserver* eventObserver );
         void Trigger();
     private:
-        std::vector<long long> m_Actions;
+        std::list<IEventObserver*> m_Actions;
     };
 
     class Loop
@@ -24,11 +31,11 @@ namespace Engine
         long long frame;
         long long milliseconds;
         long long deltatime;
-        Event OnInitialize;
-        Event OnUpdate;
-        Event OnRender;
-        Event OnEndUpdate;
-        Event OnEndLoop;
+        IEvent OnInitialize;
+        IEvent OnUpdate;
+        IEvent OnRender;
+        IEvent OnEndUpdate;
+        IEvent OnEndLoop;
 
     private:
         long long m_Start;

@@ -195,7 +195,7 @@ Graphics::Bitmap::Bitmap(const char *filepath)
 {
     std::streampos size;
     char * memblock;
-
+    
     std::ifstream file ( filepath, std::ios::in | std::ios::binary | std::ios::ate);
     if (file.is_open())
     {

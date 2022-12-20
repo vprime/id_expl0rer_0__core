@@ -53,7 +53,7 @@ bool Engine::Loop::Update()
     this->OnRender.Trigger();
     this->OnEndUpdate.Trigger();
 
-    return (milliseconds > 3000 || frame > 3000);
+    return !(milliseconds > 3000 || frame > 3000);
 }
 
 void Engine::Loop::Initialize()
