@@ -8,6 +8,7 @@ namespace Engine
     class Event
     {
     public:
+        Event();
         void AddListener( void (*listener)() );
         void Trigger();
     private:

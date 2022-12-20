@@ -24,6 +24,6 @@ void UpdateLoop()
 app::app::app()
 {
     mainLoop = new Engine::Loop;
-    mainLoop->OnInitialize.AddListener(InitalizeApp);
+    mainLoop->OnInitialize.AddListener(&InitalizeApp);
 
 }

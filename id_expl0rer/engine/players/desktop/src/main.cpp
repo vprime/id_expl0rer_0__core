@@ -1,6 +1,4 @@
 
-
-#include "renderer.cpp"
 #include <engine/app.h>
 #include <iostream>
 
@@ -12,7 +10,6 @@ int main(int argc, char **argv)
     std::cout << "Starting app ";
 
     bool appRunning = true;
-
     while (appRunning)
     {
         appRunning = mainApp.mainLoop->Update();

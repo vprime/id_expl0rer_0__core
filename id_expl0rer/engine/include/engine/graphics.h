@@ -63,7 +63,7 @@ namespace Graphics
     class Renderer
     {
     public:
-        virtual void Draw(const Texture* texture) = 0;
+        virtual void Draw(const Graphics::Texture* texture) = 0;
         virtual void Clear() = 0;
         virtual Math::Vector2Short GetViewport() = 0;
     };

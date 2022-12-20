@@ -1,7 +1,3 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
 #include <SFML/Graphics.hpp>
 #include <GL/gl.h>
 #include "../include/player/desktop_renderer.h"
