@@ -23,7 +23,7 @@ namespace Math
     struct Vector2Int
     {
     public:
-        Vector2Int():X(0), Y(0);
+        Vector2Int();
         Vector2Int(int x, int y);
         int X;
         int Y;

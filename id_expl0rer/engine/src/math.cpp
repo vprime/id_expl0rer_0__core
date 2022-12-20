@@ -20,6 +20,11 @@ Math::Vector2Int::Vector2Int(int x, int y)
     Y = y;
 }
 
+Math::Vector2Int::Vector2Int() : X(), Y()
+{
+
+}
+
 Math::Vector3::Vector3(float x, float y, float z)
 {
     X = x;
