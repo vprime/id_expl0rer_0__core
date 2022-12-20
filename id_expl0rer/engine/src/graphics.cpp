@@ -1,7 +1,6 @@
-#import <vector>
-#include <typeinfo>
+#include <vector>
 #include <string>
-#import "engine/graphics.h"
+#include "engine/graphics.h"
 
 
 Graphics::Color::Color()
@@ -48,7 +47,7 @@ void Graphics::Camera::Render()
     // Get the palette and palette map
 
     // Initialize the render texture.
-    auto cameraSize = transform.bounds.GetSize();
+    Math::Vector2Int cameraSize = transform.bounds.GetSize();
     if ((short)cameraSize.X != m_RenderTexture.width
     || (short)cameraSize.Y != m_RenderTexture.height)
     {
@@ -66,7 +65,8 @@ void Graphics::Camera::Render()
         {
             if (transform.bounds.Intersects(&m_Layers[il]->components[ic]->transform.bounds))
             {
-                auto* drawableComponent = dynamic_cast<Graphics::IDrawable*>(m_Layers[il]->components[ic]);
+                Graphics::IDrawable *drawableComponent;
+                drawableComponent = dynamic_cast<Graphics::IDrawable *>(m_Layers[il]->components[ic]);
                 if (drawableComponent)
                 {
                     drawables.push_back(drawableComponent);
@@ -78,12 +78,12 @@ void Graphics::Camera::Render()
     // Draw each drawable
     for(int id = 0; id < drawables.size(); id++)
     {
-        auto* drawnTexture = drawables[id]->GetTexture();
-        auto* drawnBounds = &drawables[id]->transform.bounds;
+        const Texture* drawnTexture = drawables[id]->GetTexture();
+        Math::BoundsInt* drawnBounds = &drawables[id]->transform.bounds;
         Math::Vector2Int viewportMin = transform.bounds.GetMin();
         Math::Vector2Int viewportSize = transform.bounds.GetSize();
 
-        auto visibleBounds = Math::BoundsInt::Intersection(drawnBounds, &transform.bounds);
+        Math::BoundsInt visibleBounds = Math::BoundsInt::Intersection(drawnBounds, &transform.bounds);
         Math::Vector2Int visibleBoundsMin = visibleBounds.GetMin();
         Math::Vector2Int visibleBoundsMax = visibleBounds.GetMax();
         Math::Vector2Int cursor = visibleBounds.GetMin();
@@ -91,14 +91,13 @@ void Graphics::Camera::Render()
         Math::Vector2Int drawnBoundsMax = drawnBounds->GetMax();
         Math::Vector2Int drawnBoundsSize = drawnBounds->GetSize();
 
-        bool drawing = true;
-        while (drawing)
+        while (true)
         {
             // Get drawableTexture pixel index from cursor position.
             int dtIndex = cursor.X - drawnBoundsMin.X + ((cursor.Y - drawnBoundsMin.Y) * drawnBoundsSize.X);
             // Get renderTexture pixel index from cursor position
             int rtIndex = cursor.X - viewportMin.X + ((cursor.Y - viewportMin.Y) * viewportSize.X);
-            auto currentPixel = m_RenderTexture.GetColorAtIndex(rtIndex);
+            // Color currentPixel = m_RenderTexture.GetColorAtIndex(rtIndex);
             // Blend pixel into renderTexture
             m_RenderTexture.pixels[rtIndex] = drawnTexture->GetPaletteColorAtIndex(dtIndex);
             // Move cursor into next position, or end drawing.
@@ -111,7 +110,6 @@ void Graphics::Camera::Render()
             }
             if (nextY > visibleBoundsMax.Y)
             {
-                drawing = false;
                 break;
             }
             cursor.X = nextX;

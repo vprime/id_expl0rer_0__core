@@ -9,7 +9,7 @@ void Engine::Event::AddListener(void (*listener)())
 
 void Engine::Event::Trigger()
 {
-    for(auto i = 0; i < this->m_Actions.size(); i++)
+    for(int i = 0; i < this->m_Actions.size(); i++)
     {
         void (*function)() = (void(*)())this->m_Actions[i];
         function();
