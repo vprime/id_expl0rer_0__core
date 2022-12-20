@@ -1,6 +1,7 @@
 #ifndef ID_EXPL0RER_DEVELOPMENT_GRAPHICS_H
 #define ID_EXPL0RER_DEVELOPMENT_GRAPHICS_H
 
+#include <vector>
 #include "math.h"
 
 namespace Graphics
