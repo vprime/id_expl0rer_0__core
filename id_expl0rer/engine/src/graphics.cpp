@@ -121,7 +121,7 @@ void Graphics::Camera::Render()
 
 Graphics::Palette::Palette() : colors()
 {
-    for (unsigned char i = 0; i <= 0xff; i++)
+    for (unsigned int i = 0; i <= 0xff; i++)
     {
         this->colors[i] = *new Color();
     }
@@ -129,7 +129,7 @@ Graphics::Palette::Palette() : colors()
 
 Graphics::Palette::Palette(Graphics::Color *colors) : colors()
 {
-    for (unsigned char i = 0; i <= 0xff; i++)
+    for (unsigned int i = 0; i <= 0xff; i++)
     {
         this->colors[i] = colors[i];
     }
@@ -138,7 +138,7 @@ Graphics::Palette::Palette(Graphics::Color *colors) : colors()
 
 Graphics::PaletteMap::PaletteMap() : map()
 {
-    for (unsigned char i = 0; i <= 0xff; i++)
+    for (unsigned int i = 0; i <= 0xff; i++)
     {
         this->map[i] = i;
     }

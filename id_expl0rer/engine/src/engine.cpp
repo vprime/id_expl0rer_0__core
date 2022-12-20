@@ -1,5 +1,4 @@
 #include <engine/engine.h>
-#include <iostream>
 
 
 void Engine::Event::AddListener(void (*listener)())
@@ -14,4 +13,9 @@ void Engine::Event::Trigger()
         void (*function)() = (void(*)())this->m_Actions[i];
         function();
     }
+}
+
+Engine::Event::Event()
+{
+    m_Actions.clear();
 }

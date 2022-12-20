@@ -1,7 +1,3 @@
-//
-// Created by nohbu on 11/21/2022.
-//
-
 #ifndef ID_EXPL0RER_DEVELOPMENT_DESKTOP_RENDERER_H
 #define ID_EXPL0RER_DEVELOPMENT_DESKTOP_RENDERER_H
 
@@ -14,7 +10,6 @@ namespace DesktopPlayer
     public:
         void Draw(const Graphics::Texture* texture);
         sf::RenderWindow window;
-
     };
 
     class RenderTexture : public sf::Drawable

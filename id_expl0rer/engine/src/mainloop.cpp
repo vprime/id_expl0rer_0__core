@@ -35,6 +35,7 @@ Engine::Loop::Loop()
     frame = 0;
     deltatime = 0;
     m_Start = time_ms();
+    m_Initialized = false;
 }
 
 
@@ -57,7 +58,7 @@ bool Engine::Loop::Update()
 
 void Engine::Loop::Initialize()
 {
-    if (this->m_Initialized)
+    if (this->m_Initialized == true)
         return;
     this->OnInitialize.Trigger();
     this->m_Initialized = true;
