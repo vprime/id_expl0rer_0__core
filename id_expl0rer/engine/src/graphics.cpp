@@ -191,12 +191,12 @@ const unsigned char Graphics::Texture::GetPaletteColorAtIndex(unsigned int index
 
 #include <iostream>
 #include <fstream>
-Graphics::Bitmap::Bitmap(const char *filepath)
+Graphics::Bitmap::Bitmap(std::string filepath)
 {
     std::streampos size;
     char * memblock;
     
-    std::ifstream file ( filepath, std::ios::in | std::ios::binary | std::ios::ate);
+    std::ifstream file ( filepath.c_str(), std::ios::in | std::ios::binary | std::ios::ate);
 
     if (file.is_open())
     {
