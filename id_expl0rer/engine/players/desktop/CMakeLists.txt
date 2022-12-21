@@ -16,6 +16,7 @@ set(CMAKE_CXX_STANDARD 98)
 add_executable(${PROJECT_NAME} WIN32 ${PROJECT_SOURCE_DIR}/src/main.cpp
         ../../include/engine/player.h
         src/renderer.cpp
+        src/player.cpp
         ../../../app/src/app.cpp
         ../../include/engine/app.h
         include/player/desktop_renderer.h)
@@ -23,3 +24,11 @@ target_include_directories(${PROJECT_NAME} PUBLIC include PRIVATE ${PROJECT_SOUR
 
 include_directories(engine app ${SFML_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} app sfml-graphics)
+
+set(link_src "${CMAKE_SOURCE_DIR}/app/resource")
+set(link_dst "${CMAKE_CURRENT_BINARY_DIR}/resource")
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND}
+        -E create_symlink ${link_src} ${link_dst}
+        DEPENDS ${link_dst}
+        COMMENT "symbolic link ${link_src} => ${link_dst}"
+)

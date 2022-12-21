@@ -197,6 +197,7 @@ Graphics::Bitmap::Bitmap(const char *filepath)
     char * memblock;
     
     std::ifstream file ( filepath, std::ios::in | std::ios::binary | std::ios::ate);
+
     if (file.is_open())
     {
         size = file.tellg();
@@ -205,10 +206,10 @@ Graphics::Bitmap::Bitmap(const char *filepath)
         file.read (memblock, size);
         file.close();
 
-        std::cout << "the entire file content is in memory";
+        std::cout << "the entire file content is in memory" << std::endl;
 
         delete[] memblock;
     }
-    else std::cout << "Unable to open file";
+    else std::cout << "Unable to open file" << filepath << std::endl;
 
 }
