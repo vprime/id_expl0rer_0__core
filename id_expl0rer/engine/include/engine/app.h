@@ -6,11 +6,13 @@
 #define ID_EXPL0RER_DEVELOPMENT_APP_H
 
 #include "engine.h"
+#include "player.h"
 namespace app{
     class app{
         public:
-            app();
+            app(Player::Player* player);
             Engine::Loop* mainLoop;
+            Player::Player* player;
 
     };
 }

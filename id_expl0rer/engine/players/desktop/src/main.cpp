@@ -2,7 +2,8 @@
 #include <engine/app.h>
 #include <iostream>
 
-app::app mainApp;
+Player::Player player;
+app::app mainApp(&player);
 
 int main(int argc, char **argv)
 {
