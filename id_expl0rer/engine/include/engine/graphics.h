@@ -92,7 +92,7 @@ namespace Graphics
     class Bitmap : public Texture
     {
     public:
-        Bitmap(const char *filepath);
+        Bitmap(std::string filepath);
 
     };
 
