@@ -3,10 +3,10 @@
 
 #include "engine.h"
 #include "player.h"
-namespace app{
-    class app{
+namespace App{
+    class App{
         public:
-            explicit app(Player::Player* player);
+            explicit App(Player::Player* player);
             Engine::Loop* mainLoop;
             Player::Player* player;
 

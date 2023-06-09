@@ -23,7 +23,7 @@ void UpdateLoop()
 }
 
 
-app::app::app(Player::Player* player)
+App::App::App(Player::Player* player)
 {
     this->player = player;
     initializer.path = std::string(this->player->resourceDirectory + bitmapLocalPath);
