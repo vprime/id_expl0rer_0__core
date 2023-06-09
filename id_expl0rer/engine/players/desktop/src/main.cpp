@@ -3,12 +3,12 @@
 #include <iostream>
 
 Player::Player player;
-app::app mainApp(&player);
+App::App mainApp(&player);
 
 int main(int argc, char **argv)
 {
 
-    std::cout << "Starting app ";
+    std::cout << "Starting App ";
 
     bool appRunning = true;
     while (appRunning)
