@@ -11,6 +11,7 @@ The game may be ported, but the primary platform is WT4090.
 - No sensor data (Physical activity recording is out without external hardware)
 - No or unimportant multiplayer functionality
 - Plays over a long period of time with minor input required from user
+- 2D & Interger positioning
 
 
 ## Summary
@@ -103,6 +104,19 @@ Take inspiration from Pokemon Emerald for the color pallette, scaling, overworld
 If we have closeup of the pets, we may want to generate 2 different scales for them. One larger and one smaller for the overworld.
 (Might not get that advanced tho)
 
+### Graphics Programming
+- Batch the graphics, and do it in just a few draw calls.
+- Render at a lower resolution, and upscale to display
+- Texture atlas
+- Animation
+- UI Layout system
+- Edge anchoring, padding, text rendering, word wrapping
+- rectangle packing for text renderer
+- PostFX (Bloom)
+- Particles
+- Bluring (Maybe? Probably not, this is in the future)
+- Color grading (This would be awesome, probab)
+
 
 ## Player Input
 
@@ -126,25 +140,50 @@ The intent will be to write the software in a portable way, so it can be re-used
 
 
 ### Development path
-- Create basic refrence project that draws a bitmap graphic to a window on the WT4090.
+- [x] Create basic refrence project that draws a bitmap graphic to a window on the WT4090.
   - Use GWES/(GDI in CE 5)
-- Create basic refrence project that draws a bitmap graphic to a windo in Modern Linux.
-  - Probably OpenGL ES 1.1 (Cross compatability with Desktop, Pi, Mobile devices)
-- Create basic refrence project that builds to Linux and WT4090 and shares some code.
-- Testing system
-- Sprite map loading
-- Rendering from sprite map to scene
-- Text rendering
-- Dialog boxes
-- Input
-- Menus
-- Animation
-- Character movement
-- Collision
-- Generate environment from random seed
-- Generate creature sprites from a random seed
-- Time system
-- Saving
-- Dialog trees
-- Virtural pet game logic
-- Target device extensions for generating random seeds
+- [x] Create basic refrence project that draws a bitmap graphic to Modern Linux & Windows systems.
+  - Probably OpenGL/Mesa sample (Switching to SFML for more control than GLUT)
+- [x] Create basic refrence project that builds to Linux and WT4090 and shares some code.
+- [x] Testing system
+  - Cmake + Boost Test (Not actually implemented yet, lol)
+- [ ] Sprite map loading
+- [ ] Rendering from sprite map to scene
+- [ ] Text rendering
+- [ ] Dialog boxes
+- [ ] Input
+- [ ] Menus
+- [ ] Animation
+- [ ] Character movement
+- [ ] Collision
+- [ ] Generate environment from random seed
+- [ ] Generate creature sprites from a random seed
+- [ ] Time system
+- [ ] Saving
+- [ ] Dialog trees
+- [ ] pet game logic
+- [ ] Target device extensions for generating random seeds
+
+### Structure
+
+- App
+  - id_expl0rer Game logic
+  - Resources for the game
+- Engine
+  - generic components
+    - rendering
+      - Pixel
+        - point of color
+      - Sprite
+        - Grouping of pixels with a width and height
+      - Layer
+        - Grouping of sprites in a 2D plane
+      - Scene
+        - grouping of ordered layers
+      - Camera
+        - width, height, and position of the viewport of a scene
+  - players
+    - wristterm
+      - build for wt4000 wrist terminals
+    - desktop
+      - build for Linux/Windows desktops
