@@ -208,6 +208,45 @@ Graphics::Bitmap::Bitmap(std::string filepath)
 
         std::cout << "the entire file content is in memory" << std::endl;
 
+        // Copy image metadata to texture
+        // Metadata positions
+        int pixelStartPos = 10;
+        int dibHeaderSizePos = 14;
+        int widthPos = 18;
+        int heightPos = 22;
+        int colorPlanesPos = 26;
+        int bitsPerPixelPos = 28;
+        int pixelDataSizePos = 34;
+        int colorSizePos = 46;
+
+
+        unsigned int pixelStart = *(reinterpret_cast<unsigned int*>(memblock + pixelStartPos));
+        unsigned int dibHeaderSize = *(reinterpret_cast<unsigned int*>(memblock + dibHeaderSizePos));
+        unsigned int width = *(reinterpret_cast<unsigned int*>(memblock + widthPos));
+        unsigned int height =  *(reinterpret_cast<unsigned int*>(memblock + heightPos));
+        unsigned int colorPlanes =  *(reinterpret_cast<unsigned int*>(memblock + colorPlanesPos));
+        unsigned int bitsPerPixel = *(reinterpret_cast<unsigned int*>(memblock + bitsPerPixelPos));
+        unsigned int pixeldatasize = *(reinterpret_cast<unsigned int*>(memblock + pixelDataSizePos));
+        unsigned int colorsize = *(reinterpret_cast<unsigned int*>(memblock + colorSizePos));
+
+        // Copy color table to texture
+        // The start of the color table is
+        unsigned int colorTableStart = 14 + dibHeaderSize;
+        // The length of the color table is
+        unsigned int colorTableLength = (colorsize * bitsPerPixel);
+
+        for(int i=0; i <= colorsize; i++)
+        {
+            this->palette.colors[i] = Color(memblock[colorTableStart +(i * bitsPerPixelPos)], memblock[1 + colorTableStart +(i * bitsPerPixelPos)], memblock[2 + colorTableStart +(i * bitsPerPixelPos)]);
+        }
+
+        // Copy pixel array to texture
+        unsigned int numberOfPixels = width * height;
+        for (int i=0; i <= numberOfPixels; i++)
+        {
+            this->pixels.push_back(memblock[pixelStart + i]);
+        }
+        size_t size1 = this->pixels.size();
         delete[] memblock;
     }
     else std::cout << "Unable to open file" << filepath << std::endl;

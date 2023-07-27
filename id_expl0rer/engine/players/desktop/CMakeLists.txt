@@ -27,8 +27,9 @@ target_link_libraries(${PROJECT_NAME} app sfml-graphics)
 
 set(link_src "${CMAKE_SOURCE_DIR}/app/resource")
 set(link_dst "${CMAKE_CURRENT_BINARY_DIR}/resource")
+
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMAND ${CMAKE_COMMAND}
-        -E create_symlink ${link_src} ${link_dst}
+        -E copy_directory ${link_src} ${link_dst}
         DEPENDS ${link_dst}
-        COMMENT "symbolic link ${link_src} => ${link_dst}"
+        COMMENT "copy directory ${link_src} => ${link_dst}"
 )
