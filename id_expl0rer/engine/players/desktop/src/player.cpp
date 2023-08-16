@@ -1,7 +1,8 @@
 #include <cstdio>
 #include <climits>
-#include <csignal>
+#include <io.h>
 #include "engine/player.h"
+#include "player/desktop_renderer.h"
 
 std::string GetCurrentWorkingDirectory()
 {
@@ -15,7 +16,6 @@ std::string GetCurrentWorkingDirectory()
     return "/";
 }
 
-Player::Player::Player()
-{
+Player::Player::Player(Graphics::Renderer &renderer) : renderer(renderer) {
     this->resourceDirectory = GetCurrentWorkingDirectory() + "/resource";
 }

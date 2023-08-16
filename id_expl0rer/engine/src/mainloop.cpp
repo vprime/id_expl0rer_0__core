@@ -1,5 +1,3 @@
-
-
 #include <engine/engine.h>
 #include <stdint.h>
 #include <iostream>
@@ -41,6 +39,7 @@ Engine::Loop::Loop()
 
 bool Engine::Loop::Update()
 {
+    std::cout << "Update Starting! " << std::endl;
     long long now = time_ms();
     long long  newMilliseconds = now - m_Start;
     deltatime = newMilliseconds - milliseconds;
@@ -62,4 +61,5 @@ void Engine::Loop::Initialize()
         return;
     this->OnInitialize.Trigger();
     this->m_Initialized = true;
+    std::cout << "Init completed! " << std::endl;
 }

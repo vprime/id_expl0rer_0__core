@@ -1,8 +1,9 @@
-
 #include <engine/app.h>
 #include <iostream>
+#include "player/desktop_renderer.h"
 
-Player::Player player;
+DesktopPlayer::Renderer desktopRenderer;
+Player::Player player(desktopRenderer);
 App::App mainApp(&player);
 
 int main(int argc, char **argv)

@@ -229,6 +229,8 @@ Graphics::Bitmap::Bitmap(std::string filepath)
         unsigned int pixeldatasize = *(reinterpret_cast<unsigned int*>(memblock + pixelDataSizePos));
         unsigned int colorsize = *(reinterpret_cast<unsigned int*>(memblock + colorSizePos));
 
+        this->width = width;
+        this->height = height;
         // Copy color table to texture
         // The start of the color table is
         unsigned int colorTableStart = 14 + dibHeaderSize;

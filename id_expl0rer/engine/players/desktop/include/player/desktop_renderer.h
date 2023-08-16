@@ -8,8 +8,11 @@ namespace DesktopPlayer
     class Renderer : public Graphics::Renderer
     {
     public:
+        Renderer();
         void Draw(const Graphics::Texture* texture);
         sf::RenderWindow window;
+        void Clear();
+        Math::Vector2Short GetViewport();
     };
 
     class RenderTexture : public sf::Drawable
